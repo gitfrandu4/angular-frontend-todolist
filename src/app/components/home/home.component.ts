@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoService } from 'src/app/services/todo.service';
 import { Todo } from 'src/app/types/todo';
 import { uid } from 'src/assets/js/uid';
 
@@ -15,21 +16,25 @@ export class HomeComponent implements OnInit {
 
   todos: Todo[] = [];
 
-  constructor() { }
+  constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
+    this.todoService.getAll()
+      .then(result => this.todos = result)
   }
 
-  addNewTask() {
+  async addNewTask() {
 
     if(this.todoTile !== ""){
 
-      this.todos.push({
+      let newTodo = await this.todoService.saveTodo({
         title: this.todoTile,
         completed: false,
         id: uid(),
         createdAt: Date.now()
-      })    
+      })
+
+      this.todos.push(newTodo)    
   
       this.todoTile = "";
     }
@@ -44,7 +49,13 @@ export class HomeComponent implements OnInit {
     // })
 
     const encontrado = this.todos.find(todo => todo.id === id) as Todo;
-    encontrado.completed = !encontrado.completed;
+
+    this.todoService.patchTodo({
+      id: id,
+      completed: !encontrado.completed
+    }).then(res => {
+        encontrado.completed = !encontrado.completed;
+      })
   }
 
   deleteTodo(id: string) {

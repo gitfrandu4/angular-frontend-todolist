@@ -3,8 +3,8 @@
     place-content: center;
 }
 
-.btn-delete-todo{
-    position: absolute;
-    right: 1px;
-    top: 1px;
+.list-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
