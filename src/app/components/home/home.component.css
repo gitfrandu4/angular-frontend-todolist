@@ -1,0 +1,10 @@
+.box {
+    display: grid;
+    place-content: center;
+}
+
+.btn-delete-todo{
+    position: absolute;
+    right: 1px;
+    top: 1px;
+}
