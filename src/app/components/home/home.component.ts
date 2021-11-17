@@ -37,35 +37,38 @@ export class HomeComponent implements OnInit {
       let newTodo = await this.todoService.saveTodo({
         title: this.todoTile,
         completed: false,
-        id: uid(),
         createdAt: Date.now()
       })
 
-      this.todos.push(newTodo)    
+      this.todos.push(newTodo as Todo)    
   
       this.todoTile = "";
     }
   }
 
-  completeTodo(id: string){
+  completeTodo(_id: string | undefined){
     // this.todos = this.todos.map(todo => {
-    //   if (todo.id === id){
+    //   if (todo._id === _id){
     //     todo.completed = true;
     //   }
     //   return todo;
     // })
 
-    const encontrado = this.todos.find(todo => todo.id === id) as Todo;
+    const encontrado = this.todos.find(todo => todo._id === _id as string) as Todo;
 
     this.todoService.patchTodo({
-      id: id,
+      _id: _id,
       completed: !encontrado.completed
     }).then(res => {
         encontrado.completed = !encontrado.completed;
       })
   }
 
-  deleteTodo(id: string) {
-    this.todos = this.todos.filter(todo => todo.id != id)
+  deleteTodo(_id: string | undefined) {
+    
+    this.todoService.deleteTodo(_id as string)
+      .then(res => {
+        this.todos = this.todos.filter(todo => todo._id != _id)
+      })
   }
 }

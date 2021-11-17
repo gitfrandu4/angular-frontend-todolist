@@ -1,27 +1,17 @@
-# AngularFrontendTodolist
+# Angular Frontend Todo list
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.9.
+Repasando Angular
 
-## Development server
+## CORS policy
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+Access to fetch at 'http://localhost:5001/api/todos' from origin 'http://localhost:4200' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+```
 
-## Code scaffolding
+**Intercambio de Recursos de Origen Cruzado (CORS)** es una característica de seguridad del navegador que restringe las solicitudes HTTP de origen cruzado que se inician desde secuencias de comandos que se ejecutan en el navegador. Si los recursos de la API REST reciben solicitudes HTTP complejas de varios orígenes, debe habilitar la compatibilidad con CORS.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Más info: https://docs.aws.amazon.com/es_es/apigateway/latest/developerguide/how-to-cors.html
 
-## Build
+En resumen, las APIs por defecto se protegen para que nadie pueda hacerle una petición desde un dominio (subdominio, **puerto** o protocolo) diferente al utilizado por la propia API. 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![CORS](https://mdn.mozillademos.org/files/14295/CORS_principle.png)
