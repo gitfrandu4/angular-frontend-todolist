@@ -18,7 +18,14 @@ export class HomeComponent implements OnInit {
 
   constructor(private todoService: TodoService) { }
 
+  // getAll(): Promise<Todo[]> {
+  //   return fetch('https://jsonplaceholder.typicode.com/todos')
+  //           .then(response =>  response.json())
+  // }
+
   ngOnInit(): void {
+    // this.getAll().then(res => this.todos = res);
+    
     this.todoService.getAll()
       .then(result => this.todos = result)
   }

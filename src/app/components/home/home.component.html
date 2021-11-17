@@ -18,13 +18,16 @@
       <ul class="list-group">
         <li *ngFor="let todo of todos" class="list-group-item">
           <!-- complete todo radio input -->
-
           <div class="list-item">
+            <div class="form-check">
             <input
+            class="form-check-input" id="flexCheckChecked" 
               (click)="completeTodo(todo.id)"
               type="checkbox"
               [checked]="todo.completed"
+              id="checkbox"
             />
+            </div>
 
             <!-- title task-->
             {{ todo.title }}
