@@ -3,6 +3,8 @@
     <h1>Todos</h1>
 
     <input
+      [class.is-invalid]="errorInName"
+      (focus)="errorInName = false"
       (keyup.enter)="addNewTask()"
       [(ngModel)]="todoTile"
       type="text"

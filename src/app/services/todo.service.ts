@@ -21,10 +21,9 @@ export class TodoService {
       .then(response => response.json())
   }
 
-  public saveTodo(newTodo: Todo){
+  public saveTodo(newTodo: Todo): Promise<Todo>{
     return axios.post<Todo>(this.endpoint, newTodo)
       .then(result => result.data)
-      .catch(err => console.log(err))
   }
 
   public deleteTodo(_id: string){
